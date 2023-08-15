@@ -39,6 +39,7 @@ public class App {
 
         Connection connection = null;
         try {
+            
             connection = getConnection(); // Reemplaza esto con tu conexión real
         } catch (SQLException ex) {
             System.err.println("No se puede conectar a Base de Datos");
