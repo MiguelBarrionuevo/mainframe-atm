@@ -99,3 +99,6 @@ use atm;
 
 5. Ejecutan el script init.sql de la carpeta database.
 
+# Version 2.0 Cajero Automatico
+
+[Maquetado Hecho en Balsamiq](https://balsamiq.cloud/s90c317/pa9iw0p)
