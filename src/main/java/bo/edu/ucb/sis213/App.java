@@ -150,6 +150,30 @@ public class App {
         return 0.0; // Valor por defecto en caso de error
     }
 
+    public static void registrarTransaccion(String tipoOperacion, double cantidad) {
+    String insertQuery = "INSERT INTO historico (usuario_id, tipo_operacion, cantidad) VALUES (?, ?, ?)";
+    try {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+        preparedStatement.setInt(1, usuarioId);
+        preparedStatement.setString(2, tipoOperacion);
+        preparedStatement.setDouble(3, cantidad);
+        
+        int rowsAffected = preparedStatement.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("Transacción registrada en el historial.");
+        } else {
+            System.out.println("No se pudo registrar la transacción en el historial.");
+        }
+        
+        preparedStatement.close();
+        connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }   
+
+
     public static void actualizarSaldo(double nuevoSaldo) {
         String updateQuery = "UPDATE usuarios SET saldo = ? WHERE id = ?";
         try {
@@ -182,6 +206,7 @@ public class App {
         } else {
             saldo += cantidad;
             actualizarSaldo(saldo);
+            registrarTransaccion("depósito", cantidad);
         }
     }
 
@@ -197,6 +222,7 @@ public class App {
         } else {
             saldo -= cantidad;
             actualizarSaldo(saldo);
+            registrarTransaccion("retiro", cantidad); 
         }
     }
 
