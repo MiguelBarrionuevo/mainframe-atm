@@ -65,12 +65,19 @@ Para compilar el proyecto
 mvn clean install
 ```
 
-## Ejecución
+## Ejecución de Programa
+
+1. Correr el programa en Consola
 
 ```
 mvn exec:java -Dexec.mainClass="bo.edu.ucb.sis213.App"
 ```
 
+2. Correr el programa con la Interfaz
+
+```
+mvn exec:java -Dexec.mainClass="bo.edu.ucb.sis213.Main"
+```
 ## Instalación de la Base de Datos
 
 1. Hacer correr una instancia MySQL en docker
