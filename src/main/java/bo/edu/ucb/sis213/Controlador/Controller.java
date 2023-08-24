@@ -213,29 +213,8 @@ private void cargarTransaccionesDesdeBaseDeDatos(Connection connection) {
     public Usuario getUsuarioActual() {
         return usuarioActual;
     }
-
-    public static void main(String[] args) {
-        Connection connection = null;
-        try {
-            connection = establecerConexion();
-        } catch (SQLException ex) {
-            System.err.println("No se puede conectar a Base de Datos");
-            ex.printStackTrace();
-            System.exit(1);
-        }
-
-        final Connection finalConnection = connection; // Crear una variable final para usar en la clase interna
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Controller(finalConnection); // Pasa la conexión al constructor de Controller
-            }
-        });
-    }
-
     
-    private static Connection establecerConexion() throws SQLException {
+    public static Connection establecerConexion() throws SQLException {
         String jdbcUrl = "jdbc:mysql://127.0.0.1:3306/atm"; // Reemplaza con tu URL de base de datos
         String usuario = "root";
         String contraseña = "123456";
